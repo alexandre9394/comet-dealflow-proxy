@@ -1,13 +1,27 @@
-export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET");
+export const config = { runtime: 'edge' };
+
+export default async function handler(req) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 25000);
+
   try {
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbwFYfsZ4CpN9vCvXxhYMNGHlxApXQcZEO_RaRshGNANOrFjTh7BRNPtqIxJtVx6IQxJ/exec"
+      "https://script.google.com/macros/s/AKfycbwFYfsZ4CpN9vCvXxhYMNGHlxApXQcZEO_RaRshGNANOrFjTh7BRNPtqIxJtVx6IQxJ/exec",
+      { signal: controller.signal, redirect: 'follow' }
     );
-    const data = await response.json();
-    res.status(200).json(data);
+    clearTimeout(timeout);
+    const data = await response.text();
+    return new Response(data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
   } catch (e) {
-    res.status(500).json({ error: e.message });
+    clearTimeout(timeout);
+    return new Response(JSON.stringify({ error: e.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+    });
   }
 }
