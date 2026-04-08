@@ -6,7 +6,7 @@ export default async function handler(req) {
 
   try {
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbxHexRfNjIxcFtvLB5DuTPg1w2NhVkL7koq7CIzIedb66m9BaYuoCSHrrHnEfgyQhdm/exec",
+      "https://script.google.com/macros/s/AKfycbyB7PFHPRNj4DN0dxSXeRvBczuOmlqYyIqz6bpxaJvBrcpQjbANWbPAbbscAedNvNKW/exec",
       { signal: controller.signal, redirect: 'follow' }
     );
     clearTimeout(timeout);
@@ -15,13 +15,18 @@ export default async function handler(req) {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-store',
       },
     });
   } catch (e) {
     clearTimeout(timeout);
     return new Response(JSON.stringify({ error: e.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-store',
+      },
     });
   }
 }
