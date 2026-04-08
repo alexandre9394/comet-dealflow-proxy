@@ -6,9 +6,9 @@ export default async function handler(req) {
 
   try {
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbzonl4uRis2jSjfu02fVwupID-B-J6T6URHhjdKxBOqO4B8Xb8OBQbQTyiXZKtvbvVT/exec",
-      { signal: controller.signal, redirect: 'follow' }
-    );
+  `https://script.google.com/macros/s/AKfycbzonl4uRis2jSjfu02fVwupID-B-J6T6URHhjdKxBOqO4B8Xb8OBQbQTyiXZKtvbvVT/exec?nocache=${Date.now()}`,
+  { signal: controller.signal, redirect: 'follow' }
+);
     clearTimeout(timeout);
     const data = await response.text();
     return new Response(data, {
