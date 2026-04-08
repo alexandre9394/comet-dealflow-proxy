@@ -6,7 +6,7 @@ export default async function handler(req) {
 
   try {
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbyB7PFHPRNj4DN0dxSXeRvBczuOmlqYyIqz6bpxaJvBrcpQjbANWbPAbbscAedNvNKW/exec",
+      "https://script.google.com/macros/s/AKfycbzonl4uRis2jSjfu02fVwupID-B-J6T6URHhjdKxBOqO4B8Xb8OBQbQTyiXZKtvbvVT/exec",
       { signal: controller.signal, redirect: 'follow' }
     );
     clearTimeout(timeout);
