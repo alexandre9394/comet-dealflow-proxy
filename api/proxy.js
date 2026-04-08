@@ -3,6 +3,7 @@ export const config = { runtime: 'edge' };
 const SCRIPTS = {
   '1': 'https://script.google.com/macros/s/AKfycbzonl4uRis2jSjfu02fVwupID-B-J6T6URHhjdKxBOqO4B8Xb8OBQbQTyiXZKtvbvVT/exec',
   '2': 'https://script.google.com/macros/s/AKfycbzPeAehHaTh9bRQ8RQ5Me9PcRNGR3NlCfbK5gzkLdf4mOg_CaAc_0JCPvxjGpYB8vtgwA/exec'
+  '3': 'https://script.google.com/macros/s/AKfycbwsbbZFvyQawhsq3UuhIluHSM4Vsq9VxouJOG7bg5EediMOvogfGl_3VY0Y_7lvYYCN/exec'
 };
 
 export default async function handler(req) {
