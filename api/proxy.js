@@ -9,12 +9,13 @@ export default async function handler(req) {
   const url = new URL(req.url);
   const sheet = url.searchParams.get('sheet') || '1';
   const scriptUrl = SCRIPTS[sheet] || SCRIPTS['1'];
-  
+  const suffix = sheet === '2' ? `?nocache=${Date.now()}` : '';
+
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 25000);
+  const timeout = setTimeout(() => controller.abort(), 40000);
   try {
     const response = await fetch(
-      `${scriptUrl}?nocache=${Date.now()}`,
+      `${scriptUrl}${suffix}`,
       { signal: controller.signal, redirect: 'follow' }
     );
     clearTimeout(timeout);
